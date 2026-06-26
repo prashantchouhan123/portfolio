@@ -12,21 +12,20 @@
         html { font-size: 62.5%; overflow-x: hidden; }
         body { background-color: var(--white); color: var(--text-dark); line-height: 1.6; }
         
-        /* --- ANIMATION CORE LOGIC --- */
         section { min-height: 100vh; padding: 12rem 9% 6rem; overflow: hidden; }
 
+        /* --- ANIMATION CORE LOGIC --- */
         .home-content, .home-img, .about-container, .skill-item, .exp-box, .cert-card, .heading, form, .comp-card {
             opacity: 0;
-            filter: blur(8px);
-            transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            filter: blur(5px);
+            transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        .home-content { transform: translateX(-200px); }
-        .home-img { transform: translateX(200px); }
-        .heading { transform: translateY(-100px); }
+        .home-content { transform: translateX(-50px); }
+        .home-img { transform: translateX(50px); }
+        .heading { transform: translateY(-50px); }
         
-        .skill-item:nth-child(odd), .cert-card:nth-child(odd), .comp-card:nth-child(odd) { transform: translate(-300px, 150px) scale(0.5) rotate(-15deg); }
-        .skill-item:nth-child(even), .cert-card:nth-child(even), .comp-card:nth-child(even) { transform: translate(300px, -150px) scale(0.5) rotate(15deg); }
+        .skill-item, .cert-card, .comp-card { transform: translateY(30px); }
 
         section.show-animate .home-content,
         section.show-animate .home-img,
@@ -42,15 +41,31 @@
             transform: translate(0, 0) scale(1) rotate(0);
         }
 
-        .exp-list { list-style: none; margin-top: 1.5rem; }
-        .exp-list li { font-size: 1.5rem; color: var(--text-light); margin-bottom: 1.2rem; display: flex; align-items: flex-start; text-align: left; }
-        .exp-list li i { color: var(--main-color); margin-right: 1.2rem; margin-top: 0.5rem; font-size: 1.6rem; }
+        /* Staggered Delay for Skills & Certifications */
+        section.show-animate .skill-item:nth-child(1), section.show-animate .cert-card:nth-child(1) { transition-delay: 0.05s; }
+        section.show-animate .skill-item:nth-child(2), section.show-animate .cert-card:nth-child(2) { transition-delay: 0.1s; }
+        section.show-animate .skill-item:nth-child(3), section.show-animate .cert-card:nth-child(3) { transition-delay: 0.15s; }
+        section.show-animate .skill-item:nth-child(4), section.show-animate .cert-card:nth-child(4) { transition-delay: 0.2s; }
+        section.show-animate .skill-item:nth-child(5), section.show-animate .cert-card:nth-child(5) { transition-delay: 0.25s; }
+        section.show-animate .skill-item:nth-child(6), section.show-animate .cert-card:nth-child(6) { transition-delay: 0.3s; }
+        section.show-animate .skill-item:nth-child(7) { transition-delay: 0.35s; }
+        section.show-animate .skill-item:nth-child(8) { transition-delay: 0.4s; }
+        section.show-animate .skill-item:nth-child(9) { transition-delay: 0.45s; }
+        section.show-animate .skill-item:nth-child(10) { transition-delay: 0.5s; }
+        section.show-animate .skill-item:nth-child(11) { transition-delay: 0.55s; }
+        section.show-animate .skill-item:nth-child(12) { transition-delay: 0.6s; }
+        section.show-animate .skill-item:nth-child(13) { transition-delay: 0.65s; }
+        section.show-animate .skill-item:nth-child(14) { transition-delay: 0.7s; }
 
+        /* --- HEADER & NAVBAR --- */
         .header { position: fixed; top: 0; left: 0; width: 100%; padding: 2rem 9%; background: rgba(255, 255, 255, 0.95); display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 1px solid #eee; backdrop-filter: blur(10px); }
         .logo { font-size: 2.4rem; color: var(--main-color); font-weight: 700; text-decoration: none; letter-spacing: 1px; }
         .navbar a { font-size: 1.5rem; color: var(--text-dark); margin-left: 3rem; text-decoration: none; transition: .3s; font-weight: 500; }
         .navbar a:hover { color: var(--main-color); }
+        
+        #menu-icon { font-size: 2.8rem; color: var(--text-dark); cursor: pointer; display: none; }
 
+        /* --- HOME SECTION --- */
         .home { display: flex; justify-content: space-between; align-items: center; gap: 4rem; }
         .home-content h1 { font-size: 5.6rem; font-weight: 700; color: var(--text-dark); }
         .home-content h3 { font-size: 2.8rem; margin: 1rem 0; font-weight: 500; }
@@ -66,10 +81,12 @@
         }
         .social-icons a:hover { background: var(--main-color); color: var(--white); }
 
+        /* --- HEADINGS --- */
         .heading { text-align: center; font-size: 4rem; margin-bottom: 7rem; font-weight: 700; position: relative; }
         .heading::after { content: ''; position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%); width: 50px; height: 4px; background: var(--main-color); border-radius: 2px; }
         .heading span { color: var(--main-color); }
 
+        /* --- ABOUT SECTION --- */
         .about { background: var(--bg-soft); }
         .about-container { max-width: 1100px; margin: auto; display: flex; align-items: center; gap: 5rem; background: var(--white); padding: 5rem; border-radius: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
         .about-img { flex: 1; }
@@ -77,33 +94,47 @@
         .about-text { flex: 2; }
         .about-text p { font-size: 1.7rem; color: var(--text-light); line-height: 1.9; }
 
+        /* --- COMPETITIVE PROFILES --- */
         .comp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; max-width: 800px; margin: 0 auto; }
         .comp-card { background: var(--white); padding: 3.5rem 2.5rem; border-radius: 1.5rem; border: 1px solid #eee; text-align: center; text-decoration: none; transition: 0.3s; color: inherit; }
         .comp-card:hover { transform: translateY(-10px); border-color: var(--main-color); }
         .comp-icon-box { width: 100%; height: 80px; margin-bottom: 2rem; display: flex; align-items: center; justify-content: center; }
         .comp-icon-box img { max-width: 70%; max-height: 100%; object-fit: contain; }
 
+        /* --- SKILLS SECTION --- */
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 3rem; }
         .skill-item { background: var(--white); padding: 3rem 2rem; border-radius: 1.5rem; text-align: center; transition: .3s; border: 1px solid #f1f1f1; }
         .skill-item:hover { transform: translateY(-8px); border-color: var(--main-color); }
         .skill-item i { font-size: 4.5rem; margin-bottom: 1.5rem; display: block; }
 
+        /* --- EDUCATION & EXPERIENCE --- */
         .exp-box { background: var(--white); padding: 3.5rem; border-radius: 1.5rem; border-left: 5px solid var(--main-color); margin-bottom: 3rem; }
-        .exp-box h3 { font-size: 2.2rem; }
+        .exp-box h3 { font-size: 2.2rem; font-weight: 700; }
         .exp-box span { color: var(--main-color); font-weight: 600; font-size: 1.5rem; display: block; margin-bottom: 1rem; }
+        .exp-list { list-style: none; margin-top: 1.5rem; }
+        .exp-list li { font-size: 1.5rem; color: var(--text-light); margin-bottom: 1.2rem; display: flex; align-items: flex-start; text-align: left; }
+        .exp-list li i { color: var(--main-color); margin-right: 1.2rem; margin-top: 0.5rem; font-size: 1.6rem; }
 
+        /* --- CERTIFICATIONS --- */
         .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 3rem; }
         .cert-card { background: var(--white); padding: 2rem; border-radius: 2rem; border: 1px solid #eee; text-align: center; text-decoration: none; color: inherit; transition: 0.3s; display: block; }
         .cert-card:hover { transform: scale(1.02); border-color: var(--main-color); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        .cert-img-box { width: 100%; height: 180px; margin-bottom: 2rem; border-radius: 1rem; overflow: hidden; background: #f9f9f9; }
-        .cert-img-box img { width: 100%; height: 100%; object-fit: contain; }
+        .cert-img-box { width: 100%; height: 180px; margin-bottom: 2rem; border-radius: 1rem; overflow: hidden; background: #f9f9f9; display: flex; align-items: center; justify-content: center; }
+        .cert-img-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
-        .btn { display: inline-block; padding: 1.3rem 3.5rem; background: var(--main-color); color: var(--white); border-radius: 50rem; font-size: 1.6rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; }
+        /* --- BUTTONS & FOOTER --- */
+        .btn { display: inline-block; padding: 1.3rem 3.5rem; background: var(--main-color); color: var(--white); border-radius: 50rem; font-size: 1.6rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: 0.3s; }
+        .btn:hover { opacity: 0.9; transform: translateY(-2px); }
         footer { padding: 4rem; background: var(--text-dark); color: var(--white); text-align: center; font-size: 1.4rem; }
 
+        /* --- RESPONSIVE MEDIA QUERIES --- */
         @media (max-width: 991px) { 
-            .home { flex-direction: column-reverse; text-align: center; } 
-            .navbar { display: none; } 
+            #menu-icon { display: block; }
+            .navbar { position: absolute; top: 100%; left: 0; width: 100%; padding: 2rem 9%; background: var(--white); border-bottom: 1px solid #eee; display: none; flex-direction: column; gap: 1.5rem; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+            .navbar.active { display: flex; }
+            .navbar a { margin: 1rem 0; font-size: 1.8rem; margin-left: 0; }
+            
+            .home { flex-direction: column-reverse; text-align: center; margin-top: 5rem; } 
             .home-img img { width: 50vw; height: 50vw; } 
             .about-container { flex-direction: column; text-align: center; padding: 3rem; }
             .about-img { width: 70%; margin-bottom: 2rem; }
@@ -114,8 +145,10 @@
 </head>
 <body>
 
+    <!-- HEADER SECTION -->
     <header class="header">
         <a href="#" class="logo">Prashant Chouhan</a>
+        <div id="menu-icon"><i class="fa-solid fa-bars"></i></div>
         <nav class="navbar">
             <a href="#home">Home</a>
             <a href="#about">About</a>
@@ -129,13 +162,13 @@
         </nav>
     </header>
 
+    <!-- HOME SECTION -->
     <section class="home" id="home">
         <div class="home-content">
             <h3>Hello, Myself</h3>
             <h1>Prashant Chouhan</h1>
             <h3>I'm a <span class="typing-text"></span></h3>
             <p style="font-size: 1.6rem; color: var(--text-light); margin: 2rem 0;">A passionate Computer Science student and Full Stack Developer focused on building clean, efficient, and user-centric web applications.</p>
-            
             <div class="cv-social-row">
                 <a href="Prashant_CV.pdf" download="Prashant_Chouhan_CV" class="btn">Download CV</a>
                 <div class="social-icons">
@@ -147,18 +180,18 @@
         <div class="home-img"><img src="mypicture.jpeg" alt="Profile"></div>
     </section>
 
+    <!-- ABOUT SECTION -->
     <section class="about" id="about">
         <h2 class="heading">About <span>Me</span></h2>
         <div class="about-container">
-            <div class="about-img">
-                <img src="mypicture.jpeg" alt="Prashant Chouhan">
-            </div>
+            <div class="about-img"><img src="mypicture.jpeg" alt="Prashant Chouhan"></div>
             <div class="about-text">
                 <p>I am a <strong>CSE student (2023-2027)</strong> specializing in <strong>Web Development</strong>. My expertise lies in creating seamless digital experiences using the MERN stack. I love solving complex problems and turning ideas into functional, beautiful web applications.</p>
             </div>
         </div>
     </section>
 
+    <!-- COMPETITIVE PROFILES -->
     <section class="competitive" id="competitive" style="background: var(--bg-soft);">
         <h2 class="heading">Competitive <span>Profiles</span></h2>
         <div class="comp-grid">
@@ -175,26 +208,34 @@
         </div>
     </section>
 
+    <!-- SKILLS SECTION (UPDATED: Added Canva, Vercel & VS Code) -->
     <section class="skills" id="skills">
         <h2 class="heading">My <span>Skills</span></h2>
         <div class="skills-grid">
             <div class="skill-item"><i class="fa-brands fa-html5" style="color: #e34f26;"></i><h3>HTML5</h3></div>
             <div class="skill-item"><i class="fa-brands fa-js" style="color: #f7df1e;"></i><h3>JavaScript</h3></div>
+            <div class="skill-item"><i class="fa-brands fa-react" style="color: #61dafb;"></i><h3>React.js</h3></div>
             <div class="skill-item"><i class="fa-brands fa-node-js" style="color: #68a063;"></i><h3>Node.js</h3></div>
             <div class="skill-item"><i class="fa-solid fa-server" style="color: #444;"></i><h3>Express.js</h3></div>
             <div class="skill-item"><i class="fa-solid fa-leaf" style="color: #47A248;"></i><h3>MongoDB</h3></div>
             <div class="skill-item"><i class="fa-solid fa-wind" style="color: #38bdf8;"></i><h3>Tailwind CSS</h3></div>
-            <div class="skill-item"><i class="fa-solid fa-laptop-code" style="color: #fe315d;"></i><h3>IntelliJ IDEA</h3></div>
+            <div class="skill-item"><i class="fa-brands fa-java" style="color: #f89820;"></i><h3>Java</h3></div>
+            <div class="skill-item"><i class="fa-solid fa-laptop-code" style="color: #fe2851;"></i><h3>IntelliJ IDEA</h3></div>
             <div class="skill-item"><i class="fa-solid fa-moon" style="color: #2c2255;"></i><h3>Eclipse</h3></div>
+            <div class="skill-item"><i class="fa-solid fa-triangle-exclamation" style="color: #00c4cc;"></i><h3>Canva</h3></div>
+            <div class="skill-item"><i class="fa-solid fa-triangle-west" style="color: #000000;"></i><h3>Vercel</h3></div>
+            <div class="skill-item"><i class="fa-solid fa-code" style="color: #007acc;"></i><h3>VS Code</h3></div>
             <div class="skill-item"><i class="fa-brands fa-github" style="color: #333;"></i><h3>GitHub</h3></div>
         </div>
     </section>
 
+    <!-- EDUCATION SECTION -->
     <section class="education" id="education" style="background: var(--bg-soft);">
         <h2 class="heading">Education</h2>
         <div class="exp-box">
             <span>2023 - 2027</span>
             <h3>B.Tech in Computer Science</h3>
+            <h4 style="color: var(--main-color); font-size: 1.6rem; margin: 0.5rem 0 1rem; font-weight: 600;">Current CGPA: 6.24 (Till 5th Sem)</h4>
             <p style="font-size: 1.5rem; color: var(--text-light);">Bansal College of Engineering Mandideep. Developing core engineering skills.</p>
         </div>
         <div class="exp-box">
@@ -204,9 +245,45 @@
         </div>
     </section>
 
+    <!-- EXPERIENCE & ACHIEVEMENTS SECTION -->
     <section class="experience" id="experience">
-        <h2 class="heading">Work <span>Experience</span></h2>
+        <h2 class="heading">Experience & <span>Achievements</span></h2>
         <div class="exp-container" style="max-width: 1000px; margin: auto;">
+            
+            <!-- GFG CAMPUS MANTRI -->
+            <div class="exp-box">
+                <span>June 2026 - Present</span>
+                <h3>Campus Mantri (Official Representative)</h3>
+                <h4 style="color: var(--main-color); font-size: 1.8rem; margin: 0.5rem 0 1.5rem;">GeeksforGeeks | Bansal Group of Institutes</h4>
+                <ul class="exp-list">
+                    <li><i class="fa-solid fa-bullhorn" style="color: var(--main-color);"></i> <span>Appointed as the primary point of contact between GeeksforGeeks and the student community.</span></li>
+                    <li><i class="fa-solid fa-users" style="color: var(--main-color);"></i> <span>Responsible for promoting GFG initiatives, organizing campus-level technical events, and acting as a brand ambassador to drive engagement.</span></li>
+                </ul>
+            </div>
+
+            <!-- INTERN SPARK -->
+            <div class="exp-box">
+                <span>Duration: 2 Months</span>
+                <h3>Frontend Developer Intern</h3>
+                <h4 style="color: var(--main-color); font-size: 1.8rem; margin: 0.5rem 0 1.5rem;">InternSpark</h4>
+                <ul class="exp-list">
+                    <li><i class="fa-solid fa-code" style="color: var(--main-color);"></i> <span>Engaged in a task-based practical learning model to build real-world web projects.</span></li>
+                    <li><i class="fa-solid fa-layer-group" style="color: var(--main-color);"></i> <span>Developed technical competence and frontend interfaces while solving domain-specific simulation tasks.</span></li>
+                </ul>
+            </div>
+
+            <!-- BGI HACKATHON 2026 -->
+            <div class="exp-box">
+                <span>May 2026</span>
+                <h3>National-Level Hackathon Participant</h3>
+                <h4 style="color: var(--main-color); font-size: 1.8rem; margin: 0.5rem 0 1.5rem;">BGI Hackathon 2026 — Vision 2047 | Viksit Bharat</h4>
+                <ul class="exp-list">
+                    <li><i class="fa-solid fa-trophy" style="color: #ffd700;"></i> <span>Competed among 600+ teams and 2800+ participants across India at the BGI-Kokta Campus.</span></li>
+                    <li><i class="fa-solid fa-brain" style="color: var(--main-color);"></i> <span>Developed and ideated solutions under the theme of <strong>AI, Data Science & Intelligent Automation</strong>.</span></li>
+                </ul>
+            </div>
+
+            <!-- CODESOFT INTERNSHIP -->
             <div class="exp-box">
                 <span>Oct 2025 - Nov 2025</span>
                 <h3>Web Development Intern</h3>
@@ -216,29 +293,37 @@
                     <li><i class="fa-solid fa-circle-check"></i> <span>Designed professional UI components using Canva.</span></li>
                 </ul>
             </div>
+
         </div>
     </section>
 
+    <!-- PROJECTS SECTION -->
     <section class="projects" id="projects" style="background: var(--bg-soft);">
         <h2 class="heading">My <span>Projects</span></h2>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 4rem; max-width: 1200px; margin: auto;">
-            <div class="skill-item" style="text-align: left; padding: 2.5rem; background: var(--white); height: auto;">
+            
+            <!-- SAHAYETA AI PORTAL -->
+            <a href="https://github.com/prashantchouhan123/Sahayata-Project" target="_blank" class="skill-item" style="text-align: left; padding: 2.5rem; background: var(--white); height: auto; text-decoration: none; color: inherit; display: block;">
                 <div style="width: 100%; height: 320px; margin-bottom: 2rem; border-radius: 1.5rem; overflow: hidden; border: 2px solid #eee; background: #fff; display: flex; align-items: center; justify-content: center;">
                     <img src="SahayetaAi.jpeg" alt="Sahayeta AI" style="max-width: 100%; max-height: 100%; object-fit: contain; display: block;">
                 </div>
                 <h3 style="font-size: 2.2rem; color: var(--main-color); margin-bottom: 1rem;">Sahayeta AI Portal</h3>
-                <p style="font-size: 1.4rem; color: var(--text-light); line-height: 1.6;">An AI-powered help desk portal designed for instant query resolution.</p>
-            </div>
-            <div class="skill-item" style="text-align: left; padding: 2.5rem; background: var(--white); height: auto;">
+                <p style="font-size: 1.4rem; color: var(--text-light); line-height: 1.6;">An AI-powered civic grievance management platform featuring React, Firebase, and Gemini API integration.</p>
+            </a>
+
+            <!-- WEATHER DASHBOARD -->
+            <a href="https://github.com/Prashant-14/Weather-Dashboard" target="_blank" class="skill-item" style="text-align: left; padding: 2.5rem; background: var(--white); height: auto; text-decoration: none; color: inherit; display: block;">
                 <div style="width: 100%; height: 320px; margin-bottom: 2rem; border-radius: 1.5rem; overflow: hidden; border: 2px solid #eee; background: #fff; display: flex; align-items: center; justify-content: center;">
                     <img src="Weather.jpeg" alt="Weather Dashboard" style="max-width: 100%; max-height: 100%; object-fit: contain; display: block;">
                 </div>
                 <h3 style="font-size: 2.2rem; color: var(--main-color); margin-bottom: 1rem;">Weather Dashboard</h3>
                 <p style="font-size: 1.4rem; color: var(--text-light); line-height: 1.6;">Real-time weather tracking dashboard featuring dynamic Django API integration.</p>
-            </div>
+            </a>
+
         </div>
     </section>
 
+    <!-- CERTIFICATIONS SECTION -->
     <section class="certifications" id="certifications">
         <h2 class="heading">Certifications</h2>
         <div class="cert-grid">
@@ -275,32 +360,53 @@
         </div>
     </section>
 
+    <!-- CONTACT SECTION -->
     <section class="contact" id="contact" style="background: var(--bg-soft);">
         <h2 class="heading">Contact <span>Me</span></h2>
         <form style="max-width: 600px; margin: auto;">
-            <input type="text" placeholder="Full Name" style="width:100%; padding:1.5rem; margin-bottom:2rem; border-radius:1rem; border:1px solid #ddd; outline: none;">
-            <textarea placeholder="Message" rows="6" style="width:100%; padding:1.5rem; margin-bottom:2rem; border-radius:1rem; border:1px solid #ddd; outline: none;"></textarea>
-            <button class="btn" type="button" style="width: 100%;">Send Message</button>
+            <input type="text" placeholder="Full Name" style="width:100%; padding:1.5rem; margin-bottom:2rem; border-radius:1rem; border:1px solid #ddd; outline: none;" required>
+            <textarea placeholder="Message" rows="6" style="width:100%; padding:1.5rem; margin-bottom:2rem; border-radius:1rem; border:1px solid #ddd; outline: none;" required></textarea>
+            <button class="btn" type="submit" style="width: 100%;">Send Message</button>
         </form>
     </section>
 
+    <!-- FOOTER -->
     <footer>
         <p>&copy; 2026 Prashant Chouhan | All Rights Reserved</p>
     </footer>
 
+    <!-- JAVASCRIPT PLUGINS & CORE LOGIC -->
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script>
+        // Typing Dynamic Animation
         new Typed('.typing-text', {
             strings: ['Full Stack Developer', 'CSE Student', 'MERN Developer'],
             typeSpeed: 70, backSpeed: 70, loop: true
         });
 
+        // Mobile Menu Responsive Toggle
+        const menuIcon = document.getElementById('menu-icon');
+        const navbar = document.querySelector('.navbar');
+        
+        menuIcon.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+        });
+
+        // Auto close mobile menu on clicking links
+        document.querySelectorAll('.navbar a').forEach(link => {
+            link.addEventListener('click', () => {
+                navbar.classList.remove('active');
+            });
+        });
+
+        // Dynamic Scroll Animation (Intersection Observer)
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('show-animate');
-                else entry.target.classList.remove('show-animate');
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show-animate');
+                }
             });
-        }, { threshold: 0.15 });
+        }, { threshold: 0.05 });
 
         document.querySelectorAll('section').forEach(section => observer.observe(section));
     </script>
